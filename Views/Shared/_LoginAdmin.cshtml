@@ -1,0 +1,48 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+
+
+@if (_signInManager.IsSignedIn(User))
+{
+    <div class="account-wrap">
+        <div class="account-item clearfix js-item-menu">
+            <div class="content">
+                <a class="js-acc-btn" asp-controller="Users" asp-action="Profile">@(User.FindFirst("UserFirstName").Value+" "+User.FindFirst("UserLastName").Value)</a>
+            </div>
+            <div class="account-dropdown js-dropdown">
+                <div class="info clearfix">
+                    <div class="content">
+                        <h5 class="name">
+                            <a asp-controller="Users" asp-action="Profile">@(User.FindFirst("UserFirstName").Value+" "+User.FindFirst("UserLastName").Value)</a>
+                        </h5>
+                        <span class="email">@User.FindFirst("UserEmail").Value</span>
+                    </div>
+                </div>
+                <div class="account-dropdown__body">
+                    <div class="account-dropdown__item">
+                        <a asp-controller="Users" asp-action="Profile">
+                            <i class="zmdi zmdi-account"></i>Your Profile
+                        </a>
+                    </div>
+                    <div class="account-dropdown__item">
+                        <a asp-controller="Users" asp-action="ChangePassword">
+                            <i class="zmdi zmdi-key"></i>Change Password
+                        </a>
+                    </div>
+                </div>
+                <div class="account-dropdown__footer">
+                    <a asp-controller="Users" asp-action="Signout">
+                        <i class="zmdi zmdi-power"></i>Sign out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="content">
+        <h5 class="name">
+            <a asp-controller="Users" asp-action="SignIn">Sign in</a>
+        </h5>
+    </div>               
+}

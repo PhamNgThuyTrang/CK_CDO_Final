@@ -1,0 +1,96 @@
+﻿@model CK_CDO_Final.Entities.Index
+
+@{
+    ViewData["Title"] = "Index - Create";
+    Layout = "_Layout";
+
+}
+
+<div class="row">
+    <div class="card card-body">
+        <div class="card-header title--sbold">
+            Thêm giá chỉ số
+        </div>
+        <div class="card-body card-block">
+            <form asp-action="Create" method="post" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label asp-for="CHISO" class="control-label "></label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input asp-for="CHISO" class="form-control" />
+                        <span asp-validation-for="CHISO" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label asp-for="NGAY" class="control-label "></label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input asp-for="NGAY" class="form-control" />
+                        <span asp-validation-for="NGAY" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label asp-for="GIAMOCUA" class="control-label "></label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input asp-for="GIAMOCUA" class="form-control" />
+                        <span asp-validation-for="GIAMOCUA" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label asp-for="GIATRAN" class="control-label "></label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input asp-for="GIATRAN" class="form-control" />
+                        <span asp-validation-for="GIATRAN" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label asp-for="GIASAN" class="control-label "></label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input asp-for="GIASAN" class="form-control" />
+                        <span asp-validation-for="GIASAN" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label asp-for="GIADONGCUA" class="control-label "></label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input asp-for="GIADONGCUA" class="form-control" />
+                        <span asp-validation-for="GIADONGCUA" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label asp-for="KHOILUONG" class="control-label "></label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input asp-for="KHOILUONG" class="form-control" />
+                        <span asp-validation-for="KHOILUONG" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group card-footer">
+                    <input type="submit" value="Create" class="btn btn-primary col-2" />
+                    <input type="reset" value="Reset" class="btn btn-danger col-2" />
+                    <a asp-action="Index" class="btn btn-secondary col-2">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model CK_CDO_Final.Models.SignInModel
+@{
+    ViewData["Title"] = "Sign In";
+    Layout = "_LayoutUser";
+
+}
+
+<form action="Signin" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Username" class="control-label"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="login-checkbox">
+        <label>
+            <input type="checkbox" name="remember">@Html.DisplayNameFor(model => model.RememberMe)
+        </label>
+        <label>
+            <a href="ForgotPassword">Forgotten Password?</a>
+        </label>
+    </div>
+    <button class="au-btn au-btn--block au-btn--blue m-b-20" type="submit">sign in</button>
+</form>
+<div class="register-link">
+    <p>
+        Don't you have account?
+        <a href="SignUp">Sign Up Here</a>
+    </p>
+</div>

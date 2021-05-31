@@ -1,0 +1,85 @@
+﻿@model CK_CDO_Final.Entities.Hnx
+
+@{
+    ViewData["Title"] = "Hnx - Details";
+    Layout = "_Layout";
+
+}
+
+<div class="row">
+    <div class="card card-body">
+        <div class="card-header title--sbold">
+            Thông tin giá chứng khoán
+        </div>
+        <div class="card-body card-block">
+            <input type="hidden" asp-for="ID" />
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.MA)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.MA)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.NGAY)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.NGAY)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.GIAMOCUA)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.GIAMOCUA)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.GIATRAN)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.GIATRAN)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.GIASAN)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.GIASAN)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.GIADONGCUA)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.GIADONGCUA)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.KHOILUONG)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.KHOILUONG)
+                </div>
+            </div>
+
+            <div class="form-group card-footer">
+                <a asp-action="Edit" class="btn btn-danger col-2" asp-route-id="@Model.ID">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary col-2">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
