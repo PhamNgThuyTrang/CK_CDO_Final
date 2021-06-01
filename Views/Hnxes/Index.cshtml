@@ -29,56 +29,56 @@
             <table class="table table-data2">
                 <thead>
                     <tr class="row">
-                        <th class="col-1">
+                        <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().MA)
                         </th>
-                        <th class="col-2">
+                        <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().NGAY)
                         </th>
-                        <th class="col-2">
+                        <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().GIAMOCUA)
                         </th>
-                        <th class="col-1">
+                        <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().GIATRAN)
                         </th>
-                        <th class="col-1">
+                        <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().GIASAN)
                         </th>
-                        <th class="col-2">
+                        <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().GIADONGCUA)
                         </th>
-                        <th class="col-1">
+                        <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().KHOILUONG)
                         </th>
-                        <th class="col-2"></th>
+                        <th class="col-lg-2"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr class="tr-shadow row">
-                            <td class="col-1">
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.MA)
                             </td>
-                            <td class="col-2">
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.NGAY)
                             </td>
-                            <td class="col-2">
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.GIAMOCUA)
                             </td>
-                            <td class="col-1">
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.GIATRAN)
                             </td>
-                            <td class="col-1">
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.GIASAN)
                             </td>
-                            <td class="col-2">
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.GIADONGCUA)
                             </td>
-                            <td class="col-1">
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.KHOILUONG)
                             </td>
-                            <td class="col-2">
+                            <td class="col-lg-2">
                                 <div class="table-data-feature">
                                     <a class="item" asp-action="Edit" asp-route-id="@item.ID" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="zmdi zmdi-edit"></i>

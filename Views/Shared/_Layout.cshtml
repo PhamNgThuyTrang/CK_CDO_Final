@@ -56,12 +56,17 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li>
                             <a href="#">
-                                <i class="fas fa-tachometer-alt"></i>Trang chủ
+                                <i class="fas fa-dashboard"></i>Trang chủ
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Indices">
+                                <i class="fas fa-dashboard"></i>Thông tin chỉ số
                             </a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-caret-down"></i>Theo dõi giá theo sàn
+                                <i class="fas fa-caret-down"></i>Giá chứng khoán theo sàn
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
@@ -77,7 +82,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-caret-down"></i>Chỉnh sửa giá
+                                <i class="fas fa-caret-down"></i>Quản lý giá chứng khoán
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
@@ -87,9 +92,19 @@
                                     <a asp-controller="Hnxes">HNX</a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Upcoms" asp-action="Index">UPCOM</a>
+                                    <a asp-controller="Upcoms">UPCOM</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Indices">
+                                <i class="fas fa-edit"></i>Quản lý chỉ số
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="UserManager">
+                                <i class="fas fa-edit"></i>Quản lý người dùng
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -108,12 +123,17 @@
                     <ul class="list-unstyled navbar__list">
                         <li>
                             <a href="#">
-                                <i class="fas fa-tachometer-alt"></i>Trang chủ
+                                <i class="fas fa-dashboard"></i>Trang chủ
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Indices">
+                                <i class="fas fa-dashboard"></i>Thông tin chỉ số
                             </a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-caret-down"></i>Theo dõi giá theo sàn
+                                <i class="fas fa-caret-down"></i>Giá chứng khoán theo sàn
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
@@ -129,7 +149,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-caret-down"></i>Chỉnh sửa giá
+                                <i class="fas fa-caret-down"></i>Quản lý giá chứng khoán
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
@@ -142,6 +162,16 @@
                                     <a asp-controller="Upcoms">UPCOM</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Indices">
+                                <i class="fas fa-edit"></i>Quản lý chỉ số
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="UserManager">
+                                <i class="fas fa-edit"></i>Quản lý người dùng
+                            </a>
                         </li>
                     </ul>
                 </nav>

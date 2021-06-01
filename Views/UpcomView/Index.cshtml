@@ -1,0 +1,89 @@
+﻿@model PagedList.Core.IPagedList<CK_CDO_Final.Entities.Upcom>
+
+    @{
+    ViewData["Title"] = "UPCOM";
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="title-5 m-b-35">Danh sách giá chứng khoán sàn UPCOM</h3>
+            <div class="table-data__tool">
+                <div class="table-data__tool-left">
+                    <form asp-action="Index" method="get">
+                        <div class="rs-select2--light rs-select2--sm">
+                            <input type="text" class="form-control" placeholder="Search for" name="SearchString" value="@ViewData["Search"]" />
+                        </div>
+                        <button class="au-btn-filter" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="table-data__tool-right">
+                    <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">
+                        Add item
+                    </a>
+                </div>
+            </div>
+            <!-- DATA TABLE -->
+            <div class="table-responsive table-responsive-data2">
+                <table class="table table-data2">
+                    <thead>
+                        <tr class="row">
+                            <th class="col-lg-1">
+                                @Html.DisplayNameFor(model => model.First().MA)
+                            </th>
+                            <th class="col-lg-2">
+                                @Html.DisplayNameFor(model => model.First().NGAY)
+                            </th>
+                            <th class="col-lg-2">
+                                @Html.DisplayNameFor(model => model.First().GIAMOCUA)
+                            </th>
+                            <th class="col-lg-2">
+                                @Html.DisplayNameFor(model => model.First().GIATRAN)
+                            </th>
+                            <th class="col-lg-2">
+                                @Html.DisplayNameFor(model => model.First().GIASAN)
+                            </th>
+                            <th class="col-lg-2">
+                                @Html.DisplayNameFor(model => model.First().GIADONGCUA)
+                            </th>
+                            <th class="col-lg-1">
+                                @Html.DisplayNameFor(model => model.First().KHOILUONG)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                    {
+                        <tr class="tr-shadow row">
+                            <td class="col-lg-1">
+                                @Html.DisplayFor(modelItem => item.MA)
+                            </td>
+                            <td class="col-lg-2">
+                                @Html.DisplayFor(modelItem => item.NGAY)
+                            </td>
+                            <td class="col-lg-2">
+                                @Html.DisplayFor(modelItem => item.GIAMOCUA)
+                            </td>
+                            <td class="col-lg-2">
+                                @Html.DisplayFor(modelItem => item.GIATRAN)
+                            </td>
+                            <td class="col-lg-2">
+                                @Html.DisplayFor(modelItem => item.GIASAN)
+                            </td>
+                            <td class="col-lg-2">
+                                @Html.DisplayFor(modelItem => item.GIADONGCUA)
+                            </td>
+                            <td class="col-lg-1">
+                                @Html.DisplayFor(modelItem => item.KHOILUONG)
+                            </td>
+                        </tr>
+                        <tr class="spacer"></tr>
+                    }
+                    </tbody>
+                </table>
+                <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="UpcomView" />
+            </div>
+            <!-- END DATA TABLE -->
+        </div>
+    </div>

@@ -16,30 +16,30 @@ namespace CK_CDO_Final.Entities
         [Display(Name = "Chỉ số")]
         [Required(ErrorMessage = "Không được để trống")]
         [MaxLength(10)]
-        public string CHISO {get; set; }
+        public string CHISO { get; set; }
 
         [Display(Name = "Ngày")]
         [Required(ErrorMessage = "Không được để trống")]
         public DateTime NGAY { get; set; }
 
-        [Display(Name = "Giá mở cửa")]
+        [Display(Name = "Mở cửa")]
         [Required(ErrorMessage = "Không được để trống")]
-        public float GIAMOCUA { get; set; }
+        public float MOCUA { get; set; }
 
-        [Display(Name = "Giá trần")]
+        [Display(Name = "Trần")]
         [Required(ErrorMessage = "Không được để trống")]
-        public float GIATRAN { get; set; }
+        public float TRAN { get; set; }
 
-        [Display(Name = "Giá sàn")]
+        [Display(Name = "Sàn")]
         [Required(ErrorMessage = "Không được để trống")]
-        public float GIASAN { get; set; }
+        public float SAN { get; set; }
 
-        [Display(Name = "Giá đóng cửa")]
+        [Display(Name = "Đóng cửa")]
         [Required(ErrorMessage = "Không được để trống")]
-        public float GIADONGCUA { get; set; }
+        public float DONGCUA { get; set; }
 
         [Display(Name = "Khối lượng")]
         [Required(ErrorMessage = "Không được để trống")]
-        public int KHOILUONG { get; set; }
+        public long KHOILUONG { get; set; }
     }
 }

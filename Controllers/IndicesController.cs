@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CK_CDO_Final.Entities;
 using PagedList.Core;
+using Index = CK_CDO_Final.Entities.Index;
 
 namespace CK_CDO_Final.Controllers
 {
@@ -24,7 +25,7 @@ namespace CK_CDO_Final.Controllers
         {
             var index = _context.Index;
             //Thực hiện phân trang với page là trang hiện tại, PAGE_SIZE số hàng hóa mỗi trang
-            PagedList<Entities.Index> model = new PagedList<Entities.Index>(index, page, 10);
+            PagedList<Index> model = new PagedList<Index>(index, page, 10);
             return View(model);
         }
 

@@ -15,9 +15,9 @@ namespace CK_CDO_Final.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
-                .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn)
+                .HasAnnotation("ProductVersion", "3.1.15")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Hnx", b =>
                 {
@@ -43,8 +43,8 @@ namespace CK_CDO_Final.Migrations
 
                     b.Property<string>("MA")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("NVARCHAR2(10)");
+                        .HasColumnType("NVARCHAR2(10)")
+                        .HasMaxLength(10);
 
                     b.Property<DateTime>("NGAY")
                         .HasColumnType("TIMESTAMP(7)");
@@ -78,8 +78,8 @@ namespace CK_CDO_Final.Migrations
 
                     b.Property<string>("MA")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("NVARCHAR2(10)");
+                        .HasColumnType("NVARCHAR2(10)")
+                        .HasMaxLength(10);
 
                     b.Property<DateTime>("NGAY")
                         .HasColumnType("TIMESTAMP(7)");
@@ -98,26 +98,26 @@ namespace CK_CDO_Final.Migrations
 
                     b.Property<string>("CHISO")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("NVARCHAR2(10)");
+                        .HasColumnType("NVARCHAR2(10)")
+                        .HasMaxLength(10);
 
-                    b.Property<float>("GIADONGCUA")
-                        .HasColumnType("BINARY_FLOAT");
-
-                    b.Property<float>("GIAMOCUA")
-                        .HasColumnType("BINARY_FLOAT");
-
-                    b.Property<float>("GIASAN")
-                        .HasColumnType("BINARY_FLOAT");
-
-                    b.Property<float>("GIATRAN")
+                    b.Property<float>("DONGCUA")
                         .HasColumnType("BINARY_FLOAT");
 
                     b.Property<int>("KHOILUONG")
                         .HasColumnType("NUMBER(10)");
 
+                    b.Property<float>("MOCUA")
+                        .HasColumnType("BINARY_FLOAT");
+
                     b.Property<DateTime>("NGAY")
                         .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<float>("SAN")
+                        .HasColumnType("BINARY_FLOAT");
+
+                    b.Property<float>("TRAN")
+                        .HasColumnType("BINARY_FLOAT");
 
                     b.HasKey("ID");
 
@@ -148,8 +148,8 @@ namespace CK_CDO_Final.Migrations
 
                     b.Property<string>("MA")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("NVARCHAR2(10)");
+                        .HasColumnType("NVARCHAR2(10)")
+                        .HasMaxLength(10);
 
                     b.Property<DateTime>("NGAY")
                         .HasColumnType("TIMESTAMP(7)");
@@ -178,8 +178,8 @@ namespace CK_CDO_Final.Migrations
                         .HasColumnType("TIMESTAMP(7)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("NVARCHAR2(256)");
+                        .HasColumnType("NVARCHAR2(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("NUMBER(1)");
@@ -200,12 +200,12 @@ namespace CK_CDO_Final.Migrations
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("NVARCHAR2(256)");
+                        .HasColumnType("NVARCHAR2(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("NVARCHAR2(256)");
+                        .HasColumnType("NVARCHAR2(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("NVARCHAR2(2000)");
@@ -226,18 +226,17 @@ namespace CK_CDO_Final.Migrations
                         .HasColumnType("NUMBER(1)");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("NVARCHAR2(256)");
+                        .HasColumnType("NVARCHAR2(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                        .HasName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("\"NormalizedUserName\" IS NOT NULL");
+                        .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -252,19 +251,18 @@ namespace CK_CDO_Final.Migrations
                         .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("NVARCHAR2(256)");
+                        .HasColumnType("NVARCHAR2(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("NVARCHAR2(256)");
+                        .HasColumnType("NVARCHAR2(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("\"NormalizedName\" IS NOT NULL");
+                        .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
                 });

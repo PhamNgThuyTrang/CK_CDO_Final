@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="title-5 m-b-35">Danh sách giá các chỉ số Index</h3>
+        <h3 class="title-5 m-b-35">Thông tin chỉ số</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <form asp-action="Index" method="get">
@@ -36,16 +36,16 @@
                             @Html.DisplayNameFor(model => model.First().NGAY)
                         </th>
                         <th class="col-2">
-                            @Html.DisplayNameFor(model => model.First().GIAMOCUA)
+                            @Html.DisplayNameFor(model => model.First().MOCUA)
                         </th>
                         <th class="col-1">
-                            @Html.DisplayNameFor(model => model.First().GIATRAN)
+                            @Html.DisplayNameFor(model => model.First().TRAN)
                         </th>
                         <th class="col-1">
-                            @Html.DisplayNameFor(model => model.First().GIASAN)
+                            @Html.DisplayNameFor(model => model.First().SAN)
                         </th>
                         <th class="col-2">
-                            @Html.DisplayNameFor(model => model.First().GIADONGCUA)
+                            @Html.DisplayNameFor(model => model.First().DONGCUA)
                         </th>
                         <th class="col-1">
                             @Html.DisplayNameFor(model => model.First().KHOILUONG)
@@ -64,16 +64,16 @@
                                 @Html.DisplayFor(modelItem => item.NGAY)
                             </td>
                             <td class="col-2">
-                                @Html.DisplayFor(modelItem => item.GIAMOCUA)
+                                @Html.DisplayFor(modelItem => item.MOCUA)
                             </td>
                             <td class="col-1">
-                                @Html.DisplayFor(modelItem => item.GIATRAN)
+                                @Html.DisplayFor(modelItem => item.TRAN)
                             </td>
                             <td class="col-1">
-                                @Html.DisplayFor(modelItem => item.GIASAN)
+                                @Html.DisplayFor(modelItem => item.SAN)
                             </td>
                             <td class="col-2">
-                                @Html.DisplayFor(modelItem => item.GIADONGCUA)
+                                @Html.DisplayFor(modelItem => item.DONGCUA)
                             </td>
                             <td class="col-1">
                                 @Html.DisplayFor(modelItem => item.KHOILUONG)

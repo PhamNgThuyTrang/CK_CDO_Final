@@ -40,6 +40,6 @@ namespace CK_CDO_Final.Entities
 
         [Display(Name = "Khối lượng")]
         [Required(ErrorMessage = "Không được để trống")]
-        public int KHOILUONG { get; set; }
+        public long KHOILUONG { get; set; }
     }
 }

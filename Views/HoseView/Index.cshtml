@@ -1,12 +1,12 @@
-﻿@model PagedList.Core.IPagedList<CK_CDO_Final.Entities.Upcom>
+﻿@model PagedList.Core.IPagedList<CK_CDO_Final.Entities.Hose>
 
 @{
-    ViewData["Title"] = "UPCOM";
+    ViewData["Title"] = "HOSE";
 }
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="title-5 m-b-35">Danh sách giá chứng khoán sàn UPCOM</h3>
+        <h3 class="title-5 m-b-35">Danh sách giá chứng khoán sàn HOSE</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <form asp-action="Index" method="get">
@@ -38,10 +38,10 @@
                         <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().GIAMOCUA)
                         </th>
-                        <th class="col-lg-1">
+                        <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().GIATRAN)
                         </th>
-                        <th class="col-lg-1">
+                        <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().GIASAN)
                         </th>
                         <th class="col-lg-2">
@@ -50,7 +50,6 @@
                         <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().KHOILUONG)
                         </th>
-                        <th class="col-lg-2"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,10 +65,10 @@
                             <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.GIAMOCUA)
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.GIATRAN)
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.GIASAN)
                             </td>
                             <td class="col-lg-2">
@@ -78,25 +77,12 @@
                             <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.KHOILUONG)
                             </td>
-                            <td class="col-lg-2">
-                                <div class="table-data-feature">
-                                    <a class="item" asp-action="Edit" asp-route-id="@item.ID" data-toggle="tooltip" data-placement="top" title="Edit">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </a>
-                                    <a class="item" asp-action="Delete" asp-route-id="@item.ID" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </a>
-                                    <a class="item" asp-action="Details" asp-route-id="@item.ID" data-toggle="tooltip" data-placement="top" title="More">
-                                        <i class="zmdi zmdi-more"></i>
-                                    </a>
-                                </div>
-                            </td>
                         </tr>
                         <tr class="spacer"></tr>
                     }
                 </tbody>
             </table>
-            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="Upcoms" />
+            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="HoseView" />
         </div>
         <!-- END DATA TABLE -->
     </div>

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CK_CDO_Final.Entities
 {
+    [Table("Upcom")]
     public class Upcom
     {
         [Key]
@@ -38,6 +40,6 @@ namespace CK_CDO_Final.Entities
 
         [Display(Name = "Khối lượng")]
         [Required(ErrorMessage = "Không được để trống")]
-        public int KHOILUONG { get; set; }
+        public long KHOILUONG { get; set; }
     }
 }
