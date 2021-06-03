@@ -15,11 +15,14 @@ namespace CK_CDO_Final.Entities
 
         [Display(Name = "Mã cổ phiếu")]
         [Required(ErrorMessage = "Không được để trống")]
-        [MaxLength(10)]
+        [MaxLength(20)]
         public string MA { get; set; }
+        [ForeignKey("MA")]
+        public CompanyDetails companyDetails { get; set; }
 
         [Display(Name = "Ngày")]
         [Required(ErrorMessage = "Không được để trống")]
+        [DataType(DataType.Date, ErrorMessage = "Dữ liệu không hợp lệ")]
         public DateTime NGAY { get; set; }
 
         [Display(Name = "Giá mở cửa")]
@@ -41,5 +44,6 @@ namespace CK_CDO_Final.Entities
         [Display(Name = "Khối lượng")]
         [Required(ErrorMessage = "Không được để trống")]
         public long KHOILUONG { get; set; }
+
     }
 }

@@ -1,0 +1,69 @@
+﻿@model CK_CDO_Final.Entities.CompanyDetails
+
+@{
+    ViewData["Title"] = "CompanyDetails - Delete";
+}
+
+<div class="row">
+    <div class="card card-body">
+        <div class="card-header title--sbold">
+            Xóa thông tin doanh nghiệp <br>
+            Bạn chắc chắn muốn xóa thông tin doanh nghiệp này?
+        </div>
+        <div class="card-body card-block">
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.MA)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.MA)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.TEN)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.TEN)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.NGANHNGHE)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.NGANHNGHE)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.SAN)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.SAN)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.KLNY)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.KLNY)
+                </div>
+            </div>
+
+            <form asp-action="Delete">
+                <div class="form-group card-footer">
+                    <input type="hidden" asp-for="MA" />
+                    <input type="submit" value="Delete" class="btn btn-danger col-2" />
+                    <a asp-action="Index" class="btn btn-secondary col-2">Back</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

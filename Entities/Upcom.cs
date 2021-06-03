@@ -10,17 +10,21 @@ namespace CK_CDO_Final.Entities
     [Table("Upcom")]
     public class Upcom
     {
+        
         [Key]
         public int ID { get; set; }
 
         [Display(Name = "Mã cổ phiếu")]
         [Required(ErrorMessage = "Không được để trống")]
-        [MaxLength(10)]
+        [MaxLength(20)]
         public string MA { get; set; }
+        [ForeignKey("MA")]
+        public CompanyDetails companyDetails { get; set; }
 
         [Display(Name = "Ngày")]
         [Required(ErrorMessage = "Không được để trống")]
-        public DateTime NGAY { get; set; }
+        [DataType(DataType.Date, ErrorMessage ="Dữ liệu không hợp lệ")]
+        public  DateTime NGAY { get; set; }
 
         [Display(Name = "Giá mở cửa")]
         [Required(ErrorMessage = "Không được để trống")]

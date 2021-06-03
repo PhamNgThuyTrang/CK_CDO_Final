@@ -19,6 +19,31 @@ namespace CK_CDO_Final.Migrations
                 .HasAnnotation("ProductVersion", "3.1.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
+            modelBuilder.Entity("CK_CDO_Final.Entities.CompanyDetails", b =>
+                {
+                    b.Property<string>("MA")
+                        .HasColumnType("NVARCHAR2(450)");
+
+                    b.Property<long>("KLNY")
+                        .HasColumnType("NUMBER(19)");
+
+                    b.Property<string>("NGANHNGHE")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.Property<string>("SAN")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.Property<string>("TEN")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.HasKey("MA");
+
+                    b.ToTable("CompanyDetails");
+                });
+
             modelBuilder.Entity("CK_CDO_Final.Entities.Hnx", b =>
                 {
                     b.Property<int>("ID")
@@ -38,18 +63,20 @@ namespace CK_CDO_Final.Migrations
                     b.Property<float>("GIATRAN")
                         .HasColumnType("BINARY_FLOAT");
 
-                    b.Property<int>("KHOILUONG")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<long>("KHOILUONG")
+                        .HasColumnType("NUMBER(19)");
 
                     b.Property<string>("MA")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("NGAY")
                         .HasColumnType("TIMESTAMP(7)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("MA");
 
                     b.ToTable("Hnx");
                 });
@@ -73,18 +100,20 @@ namespace CK_CDO_Final.Migrations
                     b.Property<float>("GIATRAN")
                         .HasColumnType("BINARY_FLOAT");
 
-                    b.Property<int>("KHOILUONG")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<long>("KHOILUONG")
+                        .HasColumnType("NUMBER(19)");
 
                     b.Property<string>("MA")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("NGAY")
                         .HasColumnType("TIMESTAMP(7)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("MA");
 
                     b.ToTable("Hose");
                 });
@@ -98,14 +127,14 @@ namespace CK_CDO_Final.Migrations
 
                     b.Property<string>("CHISO")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
 
                     b.Property<float>("DONGCUA")
                         .HasColumnType("BINARY_FLOAT");
 
-                    b.Property<int>("KHOILUONG")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<long>("KHOILUONG")
+                        .HasColumnType("NUMBER(19)");
 
                     b.Property<float>("MOCUA")
                         .HasColumnType("BINARY_FLOAT");
@@ -143,18 +172,20 @@ namespace CK_CDO_Final.Migrations
                     b.Property<float>("GIATRAN")
                         .HasColumnType("BINARY_FLOAT");
 
-                    b.Property<int>("KHOILUONG")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<long>("KHOILUONG")
+                        .HasColumnType("NUMBER(19)");
 
                     b.Property<string>("MA")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("NGAY")
                         .HasColumnType("TIMESTAMP(7)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("MA");
 
                     b.ToTable("Upcom");
                 });
@@ -369,6 +400,33 @@ namespace CK_CDO_Final.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CK_CDO_Final.Entities.Hnx", b =>
+                {
+                    b.HasOne("CK_CDO_Final.Entities.CompanyDetails", "companyDetails")
+                        .WithMany("HNXS")
+                        .HasForeignKey("MA")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CK_CDO_Final.Entities.Hose", b =>
+                {
+                    b.HasOne("CK_CDO_Final.Entities.CompanyDetails", "companyDetails")
+                        .WithMany("HOSES")
+                        .HasForeignKey("MA")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CK_CDO_Final.Entities.Upcom", b =>
+                {
+                    b.HasOne("CK_CDO_Final.Entities.CompanyDetails", "companyDetails")
+                        .WithMany("UPCOMS")
+                        .HasForeignKey("MA")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

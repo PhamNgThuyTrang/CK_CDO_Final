@@ -1,0 +1,66 @@
+﻿@model CK_CDO_Final.Entities.CompanyDetails
+
+@{
+    ViewData["Title"] = "CompanyDetails - Details";
+    Layout = "_Layout";
+
+}
+
+<div class="row">
+    <div class="card card-body">
+        <div class="card-header title--sbold">
+            Thông tin doanh nghiệp niêm yết
+        </div>
+        <div class="card-body card-block">
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.MA)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.MA)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.TEN)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.TEN)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.NGANHNGHE)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.NGANHNGHE)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.SAN)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.SAN)
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    @Html.DisplayNameFor(model => model.KLNY)
+                </div>
+                <div class="col-12 col-md-9">
+                    @Html.DisplayFor(model => model.KLNY)
+                </div>
+            </div>
+
+            <div class="form-group card-footer">
+                <a asp-action="Edit" class="btn btn-danger col-2" asp-route-id="@Model.MA">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary col-2">Back</a>
+            </div>
+        </div>
+    </div>
+</div>

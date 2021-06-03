@@ -7,6 +7,24 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210529141419_db.init.cs" />
     <Compile Remove="Migrations\20210529141419_db.init.Designer.cs" />
+    <Compile Remove="Migrations\20210601171424_db.init.cs" />
+    <Compile Remove="Migrations\20210601171424_db.init.Designer.cs" />
+    <Compile Remove="Migrations\20210602074620_CompanyDetails.cs" />
+    <Compile Remove="Migrations\20210602074620_CompanyDetails.Designer.cs" />
+    <Compile Remove="Migrations\20210602081116_CDO.cs" />
+    <Compile Remove="Migrations\20210602081116_CDO.Designer.cs" />
+    <Compile Remove="Migrations\20210602083715_CDO.cs" />
+    <Compile Remove="Migrations\20210602083715_CDO.Designer.cs" />
+    <Compile Remove="Migrations\20210602152032_CDO.cs" />
+    <Compile Remove="Migrations\20210602152032_CDO.Designer.cs" />
+    <Compile Remove="Migrations\20210603025209_CDO.cs" />
+    <Compile Remove="Migrations\20210603025209_CDO.Designer.cs" />
+    <Compile Remove="Migrations\20210603034638_CDO.cs" />
+    <Compile Remove="Migrations\20210603034638_CDO.Designer.cs" />
+    <Compile Remove="Migrations\20210603035013_CDO.cs" />
+    <Compile Remove="Migrations\20210603035013_CDO.Designer.cs" />
+    <Compile Remove="Migrations\20210603041615_CDO.cs" />
+    <Compile Remove="Migrations\20210603041615_CDO.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

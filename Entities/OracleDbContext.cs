@@ -15,6 +15,7 @@ namespace CK_CDO_Final.Entities
         public DbSet<Hnx> Hnx { get; set; }
         public DbSet<Upcom> Upcom { get; set; }
         public DbSet<Index> Index { get; set; }
+        public DbSet<CompanyDetails> CompanyDetails { get; set; }
 
         public OracleDbContext(DbContextOptions options) : base(options)
         {

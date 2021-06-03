@@ -1,0 +1,76 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+
+
+@if (_signInManager.IsSignedIn(User))
+{
+    <li>
+        <a href="#">
+            <i class="fas fa-dashboard"></i>Trang chủ
+        </a>
+    </li>
+    <li>
+        <a asp-controller="Indices">
+            <i class="fas fa-edit"></i>Quản lý chỉ số
+        </a>
+    </li>
+    <li>
+        <a asp-controller="CompanyDetails">
+            <i class="fas fa-edit"></i>Quản lý thông tin doanh nghiệp
+        </a>
+    </li>
+    <li class="has-sub">
+        <a class="js-arrow" href="#">
+            <i class="fas fa-caret-down"></i>Quản lý giá chứng khoán
+        </a>
+        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+            <li>
+                <a asp-controller="Hoses">HOSE</a>
+            </li>
+            <li>
+                <a asp-controller="Hnxes">HNX</a>
+            </li>
+            <li>
+                <a asp-controller="Upcoms">UPCOM</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a asp-controller="UserManager">
+            <i class="fas fa-edit"></i>Quản lý người dùng
+        </a>
+    </li>
+}
+else
+{
+    <li>
+        <a href="#">
+            <i class="fas fa-dashboard"></i>Trang chủ
+        </a>
+    </li>
+    <li>
+        <a asp-controller="IndexView">
+            <i class="fas fa-info"></i>Thông tin chỉ số
+        </a>
+    </li>
+    <li>
+        <a asp-controller="CompanyDetailsView">
+            <i class="fas fa-info"></i>Thông tin doanh nghiệp
+        </a>
+    </li>
+    <li class="has-sub">
+        <a class="js-arrow" href="#">
+            <i class="fas fa-caret-down"></i>Giá chứng khoán theo sàn
+        </a>
+        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+            <li>
+                <a asp-controller="HoseView">HOSE</a>
+            </li>
+            <li>
+                <a asp-controller="HnxView">HNX</a>
+            </li>
+            <li>
+                <a asp-controller="UpcomView">UPCOM</a>
+            </li>
+        </ul>
+    </li>
+}

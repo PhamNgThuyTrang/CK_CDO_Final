@@ -15,11 +15,12 @@ namespace CK_CDO_Final.Entities
 
         [Display(Name = "Chỉ số")]
         [Required(ErrorMessage = "Không được để trống")]
-        [MaxLength(10)]
+        [MaxLength(20)]
         public string CHISO { get; set; }
 
         [Display(Name = "Ngày")]
         [Required(ErrorMessage = "Không được để trống")]
+        [DataType(DataType.Date, ErrorMessage = "Dữ liệu không hợp lệ")]
         public DateTime NGAY { get; set; }
 
         [Display(Name = "Mở cửa")]
