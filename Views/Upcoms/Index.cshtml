@@ -11,7 +11,10 @@
             <div class="table-data__tool-left">
                 <form asp-action="Index" method="get">
                     <div class="rs-select2--light rs-select2--sm">
-                        <input type="text" class="form-control" placeholder="Search for" name="SearchString" value="@ViewData["Search"]" />
+                        <input type="text" class="form-control" placeholder="Search for" id="searchString" name="searchString" value="@ViewData["Search"]" />
+                    </div>
+                    <div class="rs-select2--light rs-select2--sm">
+                        <input type="date" id="date" name="date" class="form-control" value="@ViewData["Date"]" />
                     </div>
                     <button class="au-btn-filter" type="submit">
                         <i class="fa fa-search"></i>
@@ -30,13 +33,13 @@
                 <thead>
                     <tr class="row">
                         <th class="col-lg-1">
-                            @Html.DisplayNameFor(model => model.First().MA)
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.First().MA)</a>
                         </th>
                         <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().NGAY)
                         </th>
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.First().GIAMOCUA)
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Open"]">@Html.DisplayNameFor(model => model.First().GIAMOCUA)</a>
                         </th>
                         <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().GIATRAN)
@@ -45,7 +48,7 @@
                             @Html.DisplayNameFor(model => model.First().GIASAN)
                         </th>
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.First().GIADONGCUA)
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Close"]">@Html.DisplayNameFor(model => model.First().GIADONGCUA)</a>
                         </th>
                         <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().KHOILUONG)
@@ -58,7 +61,7 @@
                     {
                         <tr class="tr-shadow row">
                             <td class="col-lg-1">
-                                @Html.DisplayFor(modelItem => item.MA)
+                                <a asp-controller="CompanyDetails" asp-action="Details" asp-route-id="@item.MA">@Html.DisplayFor(modelItem => item.MA)</a>
                             </td>
                             <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.NGAY)

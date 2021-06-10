@@ -11,18 +11,17 @@
             <div class="table-data__tool-left">
                 <form asp-action="Index" method="get">
                     <div class="rs-select2--light rs-select2--sm">
-                        <input type="text" class="form-control" placeholder="Search for" name="SearchString" value="@ViewData["Search"]" />
+                        <input type="text" class="form-control" placeholder="Search for" id="searchString" name="searchString" value="@ViewData["Search"]" />
+                    </div>
+                    <div class="rs-select2--light rs-select2--sm">
+                        <input type="date" id="date" name="date" class="form-control" value="@ViewData["Date"]" />
                     </div>
                     <button class="au-btn-filter" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                 </form>
             </div>
-            <div class="table-data__tool-right">
-                <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">
-                    Add item
-                </a>
-            </div>
+            
         </div>
         <!-- DATA TABLE -->
         <div class="table-responsive table-responsive-data2">
@@ -30,13 +29,13 @@
                 <thead>
                     <tr class="row">
                         <th class="col-lg-1">
-                            @Html.DisplayNameFor(model => model.First().CHISO)
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.First().CHISO)</a>
                         </th>
                         <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().NGAY)
                         </th>
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.First().MOCUA)
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Open"]">@Html.DisplayNameFor(model => model.First().MOCUA)</a>
                         </th>
                         <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().TRAN)
@@ -45,7 +44,7 @@
                             @Html.DisplayNameFor(model => model.First().SAN)
                         </th>
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.First().DONGCUA)
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Close"]">@Html.DisplayNameFor(model => model.First().DONGCUA)</a>
                         </th>
                         <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().KHOILUONG)
@@ -81,8 +80,7 @@
                         <tr class="spacer"></tr>
                     }
                 </tbody>
-            </table>
-            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="IndexView" />
+            </table>            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="IndexView" />
         </div>
         <!-- END DATA TABLE -->
     </div>

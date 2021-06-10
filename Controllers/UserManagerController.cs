@@ -13,7 +13,7 @@ using PagedList.Core;
 
 namespace CK_CDO_Final.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserManagerController : Controller
     {
         private readonly OracleDbContext _context;
@@ -149,7 +149,7 @@ namespace CK_CDO_Final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,UserName,Email,PhoneNumber,FirstName,LastName,CreditCard,Address,DateOfBirth,level")] ApplicationUser applicationUser)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,UserName,Email,PhoneNumber,FirstName,LastName,CreditCard,Address,DateOfBirth,Role")] ApplicationUser applicationUser)
         {
             if (id != applicationUser.Id)
             {

@@ -18,11 +18,7 @@
                     </button>
                 </form>
             </div>
-            <div class="table-data__tool-right">
-                <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">
-                    Add item
-                </a>
-            </div>
+            
         </div>
         <!-- DATA TABLE -->
         <div class="table-responsive table-responsive-data2">
@@ -30,16 +26,16 @@
                 <thead>
                     <tr class="row">
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.First().MA)
-                        </th>
-                        <th class="col-lg-3">
-                            @Html.DisplayNameFor(model => model.First().TEN)
-                        </th>
-                        <th class="col-lg-3">
-                            @Html.DisplayNameFor(model => model.First().NGANHNGHE)
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.First().MA)</a>
                         </th>
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.First().SAN)
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ten"]">@Html.DisplayNameFor(model => model.First().TEN)</a>
+                        </th>
+                        <th class="col-lg-2">
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Nganh"]">@Html.DisplayNameFor(model => model.First().NGANHNGHE)</a>
+                        </th>
+                        <th class="col-lg-2">
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["San"]">@Html.DisplayNameFor(model => model.First().SAN)</a>
                         </th>
                         <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().KLNY)

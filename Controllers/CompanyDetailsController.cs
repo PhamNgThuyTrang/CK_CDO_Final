@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CK_CDO_Final.Entities;
 using PagedList.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CK_CDO_Final.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CompanyDetailsController : Controller
     {
         private readonly OracleDbContext _context;
@@ -20,9 +22,53 @@ namespace CK_CDO_Final.Controllers
         }
 
         // GET: CompanyDetails
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(string? searchString, string? sortOrder, int page = 1)
         {
-            var companyDetails = _context.CompanyDetails;
+            var companyDetails = from c in _context.CompanyDetails
+                                 select c;
+
+            ViewData["Ma"] = sortOrder == "Ma" ? "Ma_desc" : "Ma";
+            ViewData["Ten"] = sortOrder == "Name" ? "Name_desc" : "Name";
+            ViewData["Nganh"] = sortOrder == "Nganh" ? "Nganh_desc" : "Nganh";
+            ViewData["San"] = sortOrder == "San" ? "San_desc" : "San";
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                companyDetails = companyDetails.Where(a => a.MA.Contains(searchString.ToUpper()));
+                ViewData["Search"] = searchString;
+
+            }
+
+            switch (sortOrder)
+            {
+
+                case "Name":
+                    companyDetails = companyDetails.OrderBy(a => a.TEN);
+                    break;
+                case "Name_desc":
+                    companyDetails = companyDetails.OrderByDescending(a => a.TEN);
+                    break;
+                case "Nganh":
+                    companyDetails = companyDetails.OrderBy(a => a.NGANHNGHE);
+                    break;
+                case "Nganh_desc":
+                    companyDetails = companyDetails.OrderByDescending(a => a.NGANHNGHE);
+                    break;
+                case "San":
+                    companyDetails = companyDetails.OrderBy(a => a.SAN);
+                    break;
+                case "San_desc":
+                    companyDetails = companyDetails.OrderByDescending(a => a.SAN);
+                    break;
+                case "Ma_desc":
+                    companyDetails = companyDetails.OrderByDescending(a => a.MA);
+                    break;
+                default:
+                    companyDetails = companyDetails.OrderBy(a => a.MA);
+                    break;
+            }
+
             //Thực hiện phân trang với page là trang hiện tại, PAGE_SIZE số hàng hóa mỗi trang
             PagedList<CompanyDetails> model = new PagedList<CompanyDetails>(companyDetails, page, 10);
             return View(model);
