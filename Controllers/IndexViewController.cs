@@ -9,11 +9,11 @@ using Index = CK_CDO_Final.Entities.Index;
 
 namespace CK_CDO_Final.Controllers
 {
-    public class IndexView : Controller
+    public class IndexViewController : Controller
     {
         private readonly OracleDbContext _context;
 
-        public IndexView(OracleDbContext context)
+        public IndexViewController(OracleDbContext context)
         {
             _context = context;
         }

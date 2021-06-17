@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CK_CDO_Final.Entities
 {
-    [Table("Index")]
+    [Table("INDEX")]
     public class Index
     {
         [Key]

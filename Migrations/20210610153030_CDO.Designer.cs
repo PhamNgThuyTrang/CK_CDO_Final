@@ -10,7 +10,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace CK_CDO_Final.Migrations
 {
     [DbContext(typeof(OracleDbContext))]
-    [Migration("20210603135537_CDO")]
+    [Migration("20210610153030_CDO")]
     partial class CDO
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasKey("MA");
 
-                    b.ToTable("CompanyDetails");
+                    b.ToTable("COMPANYDETAILS");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Hnx", b =>
@@ -80,7 +80,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasIndex("MA");
 
-                    b.ToTable("Hnx");
+                    b.ToTable("HNX");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Hose", b =>
@@ -117,7 +117,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasIndex("MA");
 
-                    b.ToTable("Hose");
+                    b.ToTable("HOSE");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Index", b =>
@@ -152,7 +152,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Index");
+                    b.ToTable("INDEX");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Upcom", b =>
@@ -189,7 +189,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasIndex("MA");
 
-                    b.ToTable("Upcom");
+                    b.ToTable("UPCOM");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Models.ApplicationUser", b =>

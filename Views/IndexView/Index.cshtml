@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="title-5 m-b-35">Danh sách giá chứng khoán sàn UPCOM</h3>
+        <h3 class="title-5 m-b-35">Danh sách chỉ số</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <form asp-action="Index" method="get">
@@ -80,7 +80,8 @@
                         <tr class="spacer"></tr>
                     }
                 </tbody>
-            </table>            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="IndexView" />
+            </table>
+            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="IndexView" />
         </div>
         <!-- END DATA TABLE -->
     </div>

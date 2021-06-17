@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CK_CDO_Final.Entities
 {
-    [Table("Hose")]
+    [Table("HOSE")]
     public class Hose
     {
         [Key]

@@ -1,4 +1,4 @@
-﻿@model PagedList.Core.IPagedList<CK_CDO_Final.Entities.Hnx>
+﻿@model IEnumerable<CK_CDO_Final.Entities.Hnx>
 
 @{
     ViewData["Title"] = "HNX";
@@ -33,25 +33,25 @@
                 <thead>
                     <tr class="row">
                         <th class="col-lg-1">
-                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.First().MA)</a>
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.MA)</a>
                         </th>
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.First().NGAY)
+                            @Html.DisplayNameFor(model => model.NGAY)
                         </th>
                         <th class="col-lg-2">
-                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Open"]">@Html.DisplayNameFor(model => model.First().GIAMOCUA)</a>
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Open"]">@Html.DisplayNameFor(model => model.GIAMOCUA)</a>
                         </th>
                         <th class="col-lg-1">
-                            @Html.DisplayNameFor(model => model.First().GIATRAN)
+                            @Html.DisplayNameFor(model => model.GIATRAN)
                         </th>
                         <th class="col-lg-1">
-                            @Html.DisplayNameFor(model => model.First().GIASAN)
+                            @Html.DisplayNameFor(model => model.GIASAN)
                         </th>
                         <th class="col-lg-2">
-                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Close"]">@Html.DisplayNameFor(model => model.First().GIADONGCUA)</a>
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Close"]">@Html.DisplayNameFor(model => model.GIADONGCUA)</a>
                         </th>
                         <th class="col-lg-1">
-                            @Html.DisplayNameFor(model => model.First().KHOILUONG)
+                            @Html.DisplayNameFor(model => model.KHOILUONG)
                         </th>
                         <th class="col-lg-2"></th>
                     </tr>
@@ -99,7 +99,6 @@
                     }
                 </tbody>
             </table>
-            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="Hnxes" />
         </div>
         <!-- END DATA TABLE -->
     </div>

@@ -25,6 +25,8 @@
     <Compile Remove="Migrations\20210603035013_CDO.Designer.cs" />
     <Compile Remove="Migrations\20210603041615_CDO.cs" />
     <Compile Remove="Migrations\20210603041615_CDO.Designer.cs" />
+    <Compile Remove="Migrations\20210610123837_CDO.cs" />
+    <Compile Remove="Migrations\20210610123837_CDO.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -210,6 +212,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper.Oracle" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />

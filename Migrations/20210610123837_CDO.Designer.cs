@@ -3,15 +3,17 @@ using System;
 using CK_CDO_Final.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oracle.EntityFrameworkCore.Metadata;
 
 namespace CK_CDO_Final.Migrations
 {
     [DbContext(typeof(OracleDbContext))]
-    partial class OracleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210610123837_CDO")]
+    partial class CDO
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasKey("MA");
 
-                    b.ToTable("COMPANYDETAILS");
+                    b.ToTable("CompanyDetails");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Hnx", b =>
@@ -78,7 +80,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasIndex("MA");
 
-                    b.ToTable("HNX");
+                    b.ToTable("Hnx");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Hose", b =>
@@ -115,7 +117,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasIndex("MA");
 
-                    b.ToTable("HOSE");
+                    b.ToTable("Hose");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Index", b =>
@@ -150,7 +152,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("INDEX");
+                    b.ToTable("Index");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Entities.Upcom", b =>
@@ -187,7 +189,7 @@ namespace CK_CDO_Final.Migrations
 
                     b.HasIndex("MA");
 
-                    b.ToTable("UPCOM");
+                    b.ToTable("Upcom");
                 });
 
             modelBuilder.Entity("CK_CDO_Final.Models.ApplicationUser", b =>

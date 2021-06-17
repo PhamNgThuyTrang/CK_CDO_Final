@@ -1,0 +1,51 @@
+﻿<nav aria-label="Page navigation example" class="d-flex justify-content-center page-container">
+    <ul class="pagination">
+        @{
+            int current = 1, end = 10;
+
+            if ((int)ViewData["page"] > 6 && (int)ViewData["total"] - (int)ViewData["page"] > 3)
+            {
+                current = (int)ViewData["page"] - 5;
+                end = (int)ViewData["page"] + 4;
+            }
+            else if (!((int)ViewData["total"] - (int)ViewData["page"] > 3))
+            {
+                current = (int)ViewData["total"] - 9;
+                end = (int)ViewData["total"];
+            }
+
+            if ((int)ViewData["page"] > 1)
+            {
+                <li class="page-item"><a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" aria-label="Home" class="page-link"><span aria-hidden="true">«</span></a></li>
+                <li class="page-item"><a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-page="@((int)ViewData["page"]-1)" aria-label="Previous" class="page-link"><span aria-hidden="true">Previous</span></a></li>
+            }
+            if ((int)ViewData["page"] > 6)
+            {
+                <li class="page-item disabled"><a class="page-link">...</a></li>
+            }
+            while (current <= end)
+            {
+                if (current == (int)ViewData["page"])
+                {
+                    <li class="page-item active"><a class="page-link"><text>@current</text></a></li>
+                    current++;
+                }
+                else
+                {
+                    <li class="page-item"><a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-page="@current" class="page-link"><text>@current</text></a></li>
+                    current++;
+                }
+            }
+            if ((int)ViewData["total"] - (int)ViewData["page"] > 3)
+            {
+                <li class="page-item disabled"><a class="page-link">...</a></li>
+            }
+            if ((int)ViewData["page"] - 1 < (int)ViewData["total"])
+            {
+                <li class="page-item"><a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-page="@((int)ViewData["page"]+1)" aria-label="Next" class="page-link"><span aria-hidden="true">Next</span></a></li>
+                <li class="page-item"><a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-page="@((int)ViewData["total"])" aria-label="Next" class="page-link"><span aria-hidden="true">»</span></a></li>
+            }
+        }
+    </ul>
+</nav>
+

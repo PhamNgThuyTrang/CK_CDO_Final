@@ -1,7 +1,7 @@
 ﻿@model PagedList.Core.IPagedList<CK_CDO_Final.Entities.CompanyDetails>
 
 @{
-    ViewData["Title"] = "HNX";
+    ViewData["Title"] = "CompanyDetails";
 }
 
 <div class="row">
@@ -28,10 +28,10 @@
                         <th class="col-lg-2">
                             <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.First().MA)</a>
                         </th>
-                        <th class="col-lg-2">
+                        <th class="col-lg-3">
                             <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ten"]">@Html.DisplayNameFor(model => model.First().TEN)</a>
                         </th>
-                        <th class="col-lg-2">
+                        <th class="col-lg-3">
                             <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Nganh"]">@Html.DisplayNameFor(model => model.First().NGANHNGHE)</a>
                         </th>
                         <th class="col-lg-2">
@@ -66,7 +66,7 @@
                     }
                 </tbody>
             </table>
-            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="CompanyDetails" />
+            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="CompanyDetailsView" />
         </div>
         <!-- END DATA TABLE -->
     </div>

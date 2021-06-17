@@ -8,6 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using CK_CDO_Final.Entities;
 using PagedList.Core;
 using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Dapper.Oracle;
+using Oracle.ManagedDataAccess.Client;
+using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace CK_CDO_Final.Controllers
 {
@@ -15,23 +20,26 @@ namespace CK_CDO_Final.Controllers
     public class HosesController : Controller
     {
         private readonly OracleDbContext _context;
+        private readonly IConfiguration _config;
+        private string Connectionstring = "CK[CDO]";
 
-        public HosesController(OracleDbContext context)
+        public HosesController(OracleDbContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
+
         }
 
         // GET: Hoses
         public async Task<IActionResult> Index(string? searchString, string? sortOrder, DateTime? date, int page = 1)
         {
-            var hoses = from h in _context.Hose
-                        select h;
-
             ViewData["Ma"] = sortOrder == "Name" ? "Name_desc" : "Name";
             ViewData["Close"] = sortOrder == "Close" ? "Close_desc" : "Close";
             ViewData["Open"] = sortOrder == "Open" ? "Open_desc" : "Open";
 
-
+            /*var hoses = from h in _context.Hose
+                        select h;
+            
             if (!String.IsNullOrEmpty(searchString))
             {
                 hoses = hoses.Where(a => a.MA.Contains(searchString.ToUpper()));
@@ -75,6 +83,19 @@ namespace CK_CDO_Final.Controllers
             //Thực hiện phân trang với page là trang hiện tại, PAGE_SIZE số hàng hóa mỗi trang
             PagedList<Hose> model = new PagedList<Hose>(hoses, page, 10);
             return View(model);
+            */
+
+            using IDbConnection db = new OracleConnection(_config.GetConnectionString(Connectionstring));
+
+            OracleDynamicParameters dynamicParameters = new OracleDynamicParameters();
+            dynamicParameters.Add(name: ":h_Ma", direction: ParameterDirection.Input, value: searchString, dbType: OracleMappingType.Varchar2);
+            dynamicParameters.Add(name: ":h_Ngay", direction: ParameterDirection.Input, value: date, dbType: OracleMappingType.Date);
+            dynamicParameters.Add(name: ":h_sortOrder", direction: ParameterDirection.Input, value: sortOrder, dbType: OracleMappingType.Varchar2);
+            dynamicParameters.Add(name: ":h_pageIndex", direction: ParameterDirection.Input, value: page, dbType: OracleMappingType.Int32);
+            dynamicParameters.Add(name: ":cv_1", direction: ParameterDirection.Output, dbType: OracleMappingType.RefCursor);
+
+            var hoses = db.Query<Hose>("SP_PAGINATION_HOSE", param: dynamicParameters, commandType: CommandType.StoredProcedure).ToList();
+            return View(hoses);
 
         }
 

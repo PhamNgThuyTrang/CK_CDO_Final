@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CK_CDO_Final.Controllers
 {
-    public class CompanyDetailsView : Controller
+    public class CompanyDetailsViewController : Controller
     {
         private readonly OracleDbContext _context;
 
-        public CompanyDetailsView(OracleDbContext context)
+        public CompanyDetailsViewController(OracleDbContext context)
         {
             _context = context;
         }
