@@ -24,9 +24,9 @@ namespace CK_CDO_Final.Controllers
         public IActionResult Index()
         {
             ViewData["User Account"] = _context.Users.Count();
-            ViewData["Total Hose"] = _context.Hose.Count() + _context.Upcom.Count() + _context.Upcom.Count();
-            ViewData["Total Companies"] = _context.CompanyDetails.Count();
-            ViewData["Total Index"] = _context.Index.Count();
+            ViewData["Total Hose"] = (_context.Hose.Count() + _context.Upcom.Count() + _context.Upcom.Count()).ToString("n0");
+            ViewData["Total Companies"] = _context.CompanyDetails.Count().ToString("n0");
+            ViewData["Total Index"] = _context.Index.Count().ToString("n0");
             return View();
         }
 

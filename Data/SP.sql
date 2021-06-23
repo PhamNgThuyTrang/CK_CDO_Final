@@ -12,7 +12,7 @@ v_LastIndex    NUMBER;
 
 begin
 -- Paging
- v_LastIndex := 10 * (h_pageIndex + 1);
+ v_LastIndex := 10 * h_pageIndex;
  v_FirstIndex := v_LastIndex - 10 + 1;
 
  OPEN cv_1 FOR 
@@ -23,7 +23,7 @@ begin
         FROM 
         (
             Select * From HOSE hj 
-            where ((h_Ma IS NULL) OR (hj.MA = h_Ma))
+            where ((h_Ma IS NULL) OR (Trim(Upper(hj.MA)) like '%' || Trim(Upper(h_Ma)) || '%'))
             -- Filtering
             And ((h_Ngay IS NULL) OR (hj.NGAY = h_Ngay))
             -- Sorting     
@@ -54,7 +54,7 @@ v_LastIndex    NUMBER;
 
 begin
 -- Paging
- v_LastIndex := 10 * (h_pageIndex + 1);
+ v_LastIndex := 10 * h_pageIndex;
  v_FirstIndex := v_LastIndex - 10 + 1;
 
  OPEN cv_1 FOR 
@@ -65,7 +65,7 @@ begin
         FROM 
         (
             Select * From HNX hj 
-            where ((h_Ma IS NULL) OR (hj.MA = h_Ma))
+            Where ((h_Ma IS NULL) OR (Trim(Upper(hj.MA)) like '%' || Trim(Upper(h_Ma)) || '%'))
             -- Filtering
             and ((h_Ngay IS NULL) OR (hj.NGAY = h_Ngay))
             -- Sorting     
@@ -81,7 +81,6 @@ begin
     )    
         WHERE rnum >= v_FirstIndex;
 end;
-/
 
 create or replace procedure SP_PAGINATION_UPCOM
 (
@@ -97,7 +96,7 @@ v_LastIndex    NUMBER;
 
 begin
 -- Paging
- v_LastIndex := 10 * (u_pageIndex + 1);
+ v_LastIndex := 10 * u_pageIndex;
  v_FirstIndex := v_LastIndex - 10 + 1;
 
  OPEN cv_1 FOR 
@@ -108,7 +107,7 @@ begin
         FROM 
         (
             Select * From UPCOM uj 
-            where ((u_Ma IS NULL) OR (uj.MA = u_Ma))
+            where ((u_Ma IS NULL) OR (Trim(Upper(uj.MA)) like '%' || Trim(Upper(u_Ma)) || '%'))
             -- Filtering
             and ((u_Ngay IS NULL) OR (uj.NGAY = u_Ngay))
             -- Sorting     
@@ -139,7 +138,7 @@ v_LastIndex    NUMBER;
 
 begin
 -- Paging
- v_LastIndex := 10 * (i_pageIndex + 1);
+ v_LastIndex := 10 * i_pageIndex;
  v_FirstIndex := v_LastIndex - 10 + 1;
 
  OPEN cv_1 FOR 
@@ -150,7 +149,7 @@ begin
         FROM 
         (
             Select * From CDO."INDEX" ij 
-            where ((i_Ma IS NULL) OR (ij.CHISO = CHISO))
+            where ((i_Ma IS NULL) OR (Trim(Upper(ij.CHISO)) like '%' || Trim(Upper(i_Ma)) || '%'))
             -- Filtering
             and ((i_Ngay IS NULL) OR (ij.NGAY = i_Ngay))
             -- Sorting     
@@ -166,3 +165,4 @@ begin
     )    
         WHERE rnum >= v_FirstIndex;
 end;
+

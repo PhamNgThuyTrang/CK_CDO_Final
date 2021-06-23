@@ -1,8 +1,13 @@
 ﻿using CK_CDO_Final.Entities;
+using Dapper;
+using Dapper.Oracle;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Oracle.ManagedDataAccess.Client;
 using PagedList.Core;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Index = CK_CDO_Final.Entities.Index;
@@ -12,66 +17,52 @@ namespace CK_CDO_Final.Controllers
     public class IndexViewController : Controller
     {
         private readonly OracleDbContext _context;
+        private readonly IConfiguration _config;
+        private string Connectionstring = "CK[CDO]";
 
-        public IndexViewController(OracleDbContext context)
+        public IndexViewController(OracleDbContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
         // GET: Hnxes
-        public async Task<IActionResult> Index(string? searchString, string? sortOrder, DateTime? date, int page = 1)
+        public async Task<IActionResult> Index(string? searchString, string? sortOrder, string? date, int page = 1)
         {
-            var index = from i in _context.Index
-                        select i;
-
             ViewData["Ma"] = sortOrder == "Name" ? "Name_desc" : "Name";
             ViewData["Close"] = sortOrder == "Close" ? "Close_desc" : "Close";
             ViewData["Open"] = sortOrder == "Open" ? "Open_desc" : "Open";
 
-
             if (!String.IsNullOrEmpty(searchString))
             {
-                index = index.Where(a => a.CHISO.Contains(searchString.ToUpper()));
                 ViewData["Search"] = searchString;
-
             }
+
+            DateTime? dateTime = null;
 
             if (date != null)
             {
-                index = index.Where(a => a.NGAY.Equals(date));
                 ViewData["Date"] = date;
-
+                dateTime = Convert.ToDateTime(date);
             }
 
-            switch (sortOrder)
-            {
+            using IDbConnection db = new OracleConnection(_config.GetConnectionString(Connectionstring));
 
-                case "Name":
-                    index = index.OrderBy(a => a.CHISO);
-                    break;
-                case "Name_desc":
-                    index = index.OrderByDescending(a => a.CHISO);
-                    break;
-                case "Close":
-                    index = index.OrderBy(a => a.MOCUA);
-                    break;
-                case "Close_desc":
-                    index = index.OrderByDescending(a => a.MOCUA);
-                    break;
-                case "Open":
-                    index = index.OrderBy(a => a.DONGCUA);
-                    break;
-                case "Open_desc":
-                    index = index.OrderByDescending(a => a.DONGCUA);
-                    break;
-                default:
-                    index = index.OrderByDescending(a => a.ID);
-                    break;
-            }
+            OracleDynamicParameters dynamicParameters = new OracleDynamicParameters();
+            dynamicParameters.Add(name: ":i_Ma", direction: ParameterDirection.Input, value: searchString, dbType: OracleMappingType.Varchar2);
+            dynamicParameters.Add(name: ":i_Ngay", direction: ParameterDirection.Input, value: dateTime, dbType: OracleMappingType.Date);
+            dynamicParameters.Add(name: ":i_sortOrder", direction: ParameterDirection.Input, value: sortOrder, dbType: OracleMappingType.Varchar2);
+            dynamicParameters.Add(name: ":i_pageIndex", direction: ParameterDirection.Input, value: page, dbType: OracleMappingType.Int32);
+            dynamicParameters.Add(name: ":cv_1", direction: ParameterDirection.Output, dbType: OracleMappingType.RefCursor);
 
-            //Thực hiện phân trang với page là trang hiện tại, PAGE_SIZE số hàng hóa mỗi trang
-            PagedList<Index> model = new PagedList<Index>(index, page, 10);
-            return View(model);
+            var indices = db.Query<Index>("SP_PAGINATION_INDEX", param: dynamicParameters, commandType: CommandType.StoredProcedure).ToList();
+
+            ViewData["page"] = page;
+            var totalPage = _context.Index.Where(c => (searchString == null || c.CHISO.Contains(searchString.Trim().ToUpper())) && (dateTime == null || c.NGAY == dateTime)).Count() / 10;
+            ViewData["total"] = _context.Index.Where(c => (searchString == null || c.CHISO.Contains(searchString.Trim().ToUpper())) && (dateTime == null || c.NGAY == dateTime)).Count() % 10
+                            == 0 ? totalPage : totalPage + 1;
+
+            return View(indices);
         }
     }
 }
