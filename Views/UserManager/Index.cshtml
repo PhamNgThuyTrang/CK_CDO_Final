@@ -15,8 +15,12 @@
                         <input type="text" class="form-control" placeholder="Search for" name="SearchString" value="@ViewData["Search"]" />
                     </div>
 
-                    <button class="au-btn-filter" type="submit">
+                    <button class="btn btn-light" type="submit">
                         <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-danger" id="clear" type="reset">
+                        <i class="fa fa-eraser"></i>
+                        Clear
                     </button>
                 </form>
             </div>
@@ -106,3 +110,15 @@
     </div>
 </div>
 
+@section js
+{
+    <script>
+        $(function () {
+            $("#clear").click(function () {
+                $("#searchString").attr("value", "");
+                window.location.href="HoseView";
+            });
+        });
+    </script>
+
+}

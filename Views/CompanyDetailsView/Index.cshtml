@@ -13,12 +13,16 @@
                     <div class="rs-select2--light rs-select2--sm">
                         <input type="text" class="form-control" placeholder="Search for" name="SearchString" value="@ViewData["Search"]" />
                     </div>
-                    <button class="au-btn-filter" type="submit">
+                    <button class="btn btn-light" type="submit">
                         <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-danger" id="clear" type="reset">
+                        <i class="fa fa-eraser"></i>
+                        Clear
                     </button>
                 </form>
             </div>
-            
+
         </div>
         <!-- DATA TABLE -->
         <div class="table-responsive table-responsive-data2">
@@ -56,10 +60,10 @@
                                 @Html.DisplayFor(modelItem => item.NGANHNGHE)
                             </td>
                             <td class="col-lg-2">
-                                @Html.DisplayFor(modelItem => item.SAN)
+                                @item.SAN.ToUpper()
                             </td>
                             <td class="col-lg-2">
-                                @Html.DisplayFor(modelItem => item.KLNY)
+                                @item.KLNY.ToString("n0")
                             </td>
                         </tr>
                         <tr class="spacer"></tr>
@@ -71,3 +75,15 @@
         <!-- END DATA TABLE -->
     </div>
 </div>
+@section js
+{
+    <script>
+        $(function () {
+            $("#clear").click(function () {
+                $("#searchString").attr("value", "");
+                window.location.href ="CompanyDetailsView";
+            });
+        });
+    </script>
+
+}

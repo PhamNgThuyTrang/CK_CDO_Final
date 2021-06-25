@@ -6,15 +6,19 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="title-5 m-b-35">Danh sách doanh nghiệp niêm yết</h3>
+        <h3 class="title-5 m-b-35">Quản lý doanh nghiệp niêm yết</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <form asp-action="Index" method="get">
                     <div class="rs-select2--light rs-select2--sm">
                         <input type="text" class="form-control" placeholder="Search for" name="SearchString" value="@ViewData["Search"]" />
                     </div>
-                    <button class="au-btn-filter" type="submit">
+                    <button class="btn btn-light" type="submit">
                         <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-danger" id="clear" type="reset">
+                        <i class="fa fa-eraser"></i>
+                        Clear
                     </button>
                 </form>
             </div>
@@ -29,16 +33,16 @@
             <table class="table table-data2">
                 <thead>
                     <tr class="row">
-                        <th class="col-lg-2">
+                        <th class="col-lg-1">
                             <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.First().MA)</a>
                         </th>
-                        <th class="col-lg-2">
+                        <th class="col-lg-3">
                             <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ten"]">@Html.DisplayNameFor(model => model.First().TEN)</a>
                         </th>
-                        <th class="col-lg-2">
+                        <th class="col-lg-3">
                             <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Nganh"]">@Html.DisplayNameFor(model => model.First().NGANHNGHE)</a>
                         </th>
-                        <th class="col-lg-2">
+                        <th class="col-lg-1">
                             <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["San"]">@Html.DisplayNameFor(model => model.First().SAN)</a>
                         </th>
                         <th class="col-lg-2">
@@ -51,20 +55,20 @@
                     @foreach (var item in Model)
                     {
                         <tr class="tr-shadow row">
-                            <td class="col-lg-2">
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.MA)
                             </td>
-                            <td class="col-lg-2">
+                            <td class="col-lg-3">
                                 @Html.DisplayFor(modelItem => item.TEN)
                             </td>
-                            <td class="col-lg-2">
+                            <td class="col-lg-3">
                                 @Html.DisplayFor(modelItem => item.NGANHNGHE)
                             </td>
-                            <td class="col-lg-2">
-                                @Html.DisplayFor(modelItem => item.SAN)
+                            <td class="col-lg-1">
+                                @item.SAN.ToUpper()
                             </td>
                             <td class="col-lg-2">
-                                @Html.DisplayFor(modelItem => item.KLNY)
+                                @item.KLNY.ToString("n0")
                             </td>
                             <td class="col-lg-2">
                                 <div class="table-data-feature">
@@ -89,3 +93,15 @@
         <!-- END DATA TABLE -->
     </div>
 </div>
+@section js
+{
+    <script>
+        $(function () {
+            $("#clear").click(function () {
+                $("#searchString").attr("value", "");
+                window.location.href ="CompanyDetails";
+            });
+        });
+    </script>
+
+}

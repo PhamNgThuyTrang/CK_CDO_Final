@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="title-5 m-b-35">Danh sách giá chứng khoán sàn HNX</h3>
+        <h3 class="title-5 m-b-35">Quản lý thông tin giá chứng khoán sàn HNX</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <form asp-action="Index" method="get">
@@ -16,8 +16,12 @@
                     <div class="rs-select2--light rs-select2--sm">
                         <input type="date" id="date" name="date" class="form-control" value="@ViewData["Date"]" />
                     </div>
-                    <button class="au-btn-filter" type="submit">
+                    <button class="btn btn-light" type="submit">
                         <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-danger" id="clear" type="reset">
+                        <i class="fa fa-eraser"></i>
+                        Clear
                     </button>
                 </form>
             </div>
@@ -32,13 +36,13 @@
             <table class="table table-data2">
                 <thead>
                     <tr class="row">
-                        <th class="col-lg-1">
+                        <th class="col-lg-2">
                             <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.MA)</a>
                         </th>
                         <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.NGAY)
                         </th>
-                        <th class="col-lg-2">
+                        <th class="col-lg-1">
                             <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Open"]">@Html.DisplayNameFor(model => model.GIAMOCUA)</a>
                         </th>
                         <th class="col-lg-1">
@@ -60,13 +64,13 @@
                     @foreach (var item in Model)
                     {
                         <tr class="tr-shadow row">
-                            <td class="col-lg-1">
+                            <td class="col-lg-2">
                                 <a asp-controller="CompanyDetails" asp-action="Details" asp-route-id="@item.MA">@Html.DisplayFor(modelItem => item.MA)</a>
                             </td>
                             <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.NGAY)
                             </td>
-                            <td class="col-lg-2">
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.GIAMOCUA)
                             </td>
                             <td class="col-lg-1">
@@ -79,7 +83,7 @@
                                 @Html.DisplayFor(modelItem => item.GIADONGCUA)
                             </td>
                             <td class="col-lg-1">
-                                @Html.DisplayFor(modelItem => item.KHOILUONG)
+                                @item.KHOILUONG.ToString("n0")
                             </td>
                             <td class="col-lg-2">
                                 <div class="table-data-feature">
@@ -104,3 +108,16 @@
         <!-- END DATA TABLE -->
     </div>
 </div>
+@section js
+{
+    <script>
+        $(function () {
+            $("#clear").click(function () {
+                $("#date").attr("value", "");
+                $("#searchString").attr("value", "");
+                window.location.href="Hnxes";
+            });
+        });
+    </script>
+
+}

@@ -40,3 +40,6 @@ h3 a:hover{
         display: contents;
     }
 }
+.pagination {
+    place-content: center;
+}

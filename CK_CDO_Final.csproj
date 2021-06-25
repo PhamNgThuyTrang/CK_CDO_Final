@@ -67,7 +67,6 @@
     <None Include="wwwroot\CoolAdmin-master\fonts\poppins\poppins-v5-latin-regular.svg" />
     <None Include="wwwroot\CoolAdmin-master\fonts\poppins\poppins-v5-latin-regular.woff2" />
     <None Include="wwwroot\CoolAdmin-master\js\bootstrap-datetimepicker.js" />
-    <None Include="wwwroot\CoolAdmin-master\js\main.js" />
     <None Include="wwwroot\CoolAdmin-master\js\moment.js" />
     <None Include="wwwroot\CoolAdmin-master\vendor\animsition\animsition.min.js" />
     <None Include="wwwroot\CoolAdmin-master\vendor\bootstrap-4.1\bootstrap.min.js" />
