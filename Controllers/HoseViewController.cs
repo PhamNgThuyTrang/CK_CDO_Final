@@ -2,6 +2,7 @@
 using Dapper;
 using Dapper.Oracle;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Oracle.ManagedDataAccess.Client;
 using PagedList.Core;
@@ -63,6 +64,29 @@ namespace CK_CDO_Final.Controllers
                             == 0 ? totalPage : totalPage + 1;
 
             return View(hoses);
+        }
+        public async Task<IActionResult> CompanyView(string id, string? searchString, string? date)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ViewData["Search"] = searchString;
+            }
+            if (date != null)
+            {
+                ViewData["Date"] = date;
+            }
+            var companyDetails = await _context.CompanyDetails
+                .FirstOrDefaultAsync(m => m.MA == id);
+            if (companyDetails == null)
+            {
+                return NotFound();
+            }
+
+            return View(companyDetails);
         }
     }
 }

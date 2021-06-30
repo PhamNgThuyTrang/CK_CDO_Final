@@ -4,18 +4,18 @@
 @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 {
     <li>
-        <a href="#">
-            <i class="fas fa-dashboard"></i>Trang chủ
+        <a asp-controller="Home">
+            <i class="fas fa-home"></i>Trang chủ
         </a>
     </li>
     <li>
         <a asp-controller="Indices">
-            <i class="fas fa-edit"></i>Quản lý chỉ số
+            <i class="fas fa-chart-bar"></i>Quản lý chỉ số
         </a>
     </li>
     <li>
         <a asp-controller="CompanyDetails">
-            <i class="fas fa-edit"></i>Quản lý thông tin doanh nghiệp
+            <i class="fas fa-briefcase"></i>Quản lý thông tin doanh nghiệp
         </a>
     </li>
     <li class="has-sub">
@@ -24,37 +24,37 @@
         </a>
         <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
             <li>
-                <a asp-controller="Hoses">HOSE</a>
+                <a asp-controller="Hoses"><i class="fas fa-chart-bar"></i>HOSE</a>
             </li>
             <li>
-                <a asp-controller="Hnxes">HNX</a>
+                <a asp-controller="Hnxes"><i class="fas fa-chart-bar"></i>HNX</a>
             </li>
             <li>
-                <a asp-controller="Upcoms">UPCOM</a>
+                <a asp-controller="Upcoms"><i class="fas fa-chart-bar"></i>UPCOM</a>
             </li>
         </ul>
     </li>
     <li>
         <a asp-controller="UserManager">
-            <i class="fas fa-edit"></i>Quản lý người dùng
+            <i class="fas fa-user"></i>Quản lý người dùng
         </a>
     </li>
 }
 @if (_signInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
 {
 <li>
-    <a href="#">
-        <i class="fas fa-dashboard"></i>Trang chủ
+    <a asp-controller="Home">
+        <i class="fas fa-home"></i>Trang chủ
     </a>
 </li>
 <li>
     <a asp-controller="IndexView">
-        <i class="fas fa-info"></i>Thông tin chỉ số
+        <i class="fas fa-chart-bar"></i>Thông tin chỉ số
     </a>
 </li>
 <li>
     <a asp-controller="CompanyDetailsView">
-        <i class="fas fa-info"></i>Thông tin doanh nghiệp
+        <i class="fas fa-briefcase"></i>Thông tin doanh nghiệp
     </a>
 </li>
 <li class="has-sub">
@@ -63,13 +63,13 @@
     </a>
     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
         <li>
-            <a asp-controller="HoseView">HOSE</a>
+            <a asp-controller="HoseView"><i class="fas fa-chart-bar"></i>HOSE</a>
         </li>
         <li>
-            <a asp-controller="HnxView">HNX</a>
+            <a asp-controller="HnxView"><i class="fas fa-chart-bar"></i>HNX</a>
         </li>
         <li>
-            <a asp-controller="UpcomView">UPCOM</a>
+            <a asp-controller="UpcomView"><i class="fas fa-chart-bar"></i>UPCOM</a>
         </li>
     </ul>
 </li>

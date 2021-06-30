@@ -9,7 +9,7 @@
         <h3 class="title-5 m-b-35">Theo dõi giá chứng khoán sàn HNX</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
-                <form asp-action="Index" method="get">
+                <form asp-action="Index" method="post">
                     <div class="rs-select2--light rs-select2--sm">
                         <input type="text" class="form-control" placeholder="Search for" id="searchString" name="searchString" value="@ViewData["Search"]" />
                     </div>
@@ -60,7 +60,7 @@
                     {
                         <tr class="tr-shadow row">
                             <td class="col-lg-2">
-                                <a asp-controller="CompanyDetails" asp-action="Details" asp-route-id="@item.MA">@Html.DisplayFor(modelItem => item.MA)</a>
+                                <a asp-action="CompanyView" asp-route-id="@item.MA" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]">@Html.DisplayFor(modelItem => item.MA)</a>
                             </td>
                             <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.NGAY)

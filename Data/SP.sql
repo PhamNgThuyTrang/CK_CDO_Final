@@ -166,3 +166,86 @@ begin
         WHERE rnum >= v_FirstIndex;
 end;
 
+create or replace procedure SP_PAGINATION_COMPANY
+(
+ c_Ma In Varchar,
+ c_sortOrder In Varchar,
+ c_pageIndex In Number,
+ cv_1 OUT SYS_REFCURSOR
+)
+as 
+v_FirstIndex   NUMBER;
+v_LastIndex    NUMBER;
+
+begin
+-- Paging
+ v_LastIndex := 10 * c_pageIndex;
+ v_FirstIndex := v_LastIndex - 10 + 1;
+
+ OPEN cv_1 FOR 
+ SELECT * 
+ FROM 
+    (
+        SELECT a.*, ROWNUM AS rnum
+        FROM 
+        (
+            Select * From COMPANYDETAILS cj 
+            where ((c_Ma IS NULL) OR (Trim(Upper(cj.MA)) like '%' || Trim(Upper(c_Ma)) || '%'))
+            -- Sorting     
+            order by
+            Case when c_sortOrder = 'Ma'then  cj.MA End,
+            Case When c_sortOrder = 'Ma_desc' then cj.MA End desc,
+            Case when c_sortOrder = 'Name'then  cj.TEN End,
+            Case When c_sortOrder = 'Name_desc' then cj.TEN End desc,     
+            Case when c_sortOrder = 'Nganh'then  cj.NGANHNGHE End,
+            Case When c_sortOrder = 'Nganh_desc' then cj.NGANHNGHE End desc,
+            Case when c_sortOrder = 'San'then  cj.SAN End,
+            Case When c_sortOrder = 'San_desc' then cj.SAN End desc,
+            Case when c_sortOrder = 'KLNY'then  cj.KLNY End,
+            Case When c_sortOrder = 'KLNY_desc' then cj.KLNY End desc
+        )a
+        WHERE ROWNUM <= v_LastIndex
+    )    
+        WHERE rnum >= v_FirstIndex;
+end;
+
+create or replace procedure SP_PAGINATION_USER
+(
+ u_Username In Varchar,
+ u_sortOrder In Varchar,
+ u_pageIndex In Number,
+ cv_1 OUT SYS_REFCURSOR
+)
+as 
+v_FirstIndex   NUMBER;
+v_LastIndex    NUMBER;
+
+begin
+-- Paging
+ v_LastIndex := 10 * u_pageIndex;
+ v_FirstIndex := v_LastIndex - 10 + 1;
+
+ OPEN cv_1 FOR 
+ SELECT * 
+ FROM 
+    (
+        SELECT a.*, ROWNUM AS rnum
+        FROM 
+        (
+            Select * From ASPNETUSERS uj 
+            where ((u_Username IS NULL) OR (Trim(Upper(uj.UserName)) like '%' || Trim(Upper(u_Username)) || '%'))
+            -- Sorting     
+            order by
+            Case when u_sortOrder = 'Ma'then  cj.MA End,
+            Case When u_sortOrder = 'Ma_desc' then cj.MA End desc,
+            Case when u_sortOrder = 'Name'then  cj.TEN End,
+            Case When u_sortOrder = 'Name_desc' then cj.TEN End desc,     
+            Case when u_sortOrder = 'Nganh'then  cj.NGANHNGHE End,
+            Case When u_sortOrder = 'Nganh_desc' then cj.NGANHNGHE End desc,
+            Case when u_sortOrder = 'San'then  cj.SAN End,
+            Case When u_sortOrder = 'San_desc' then cj.SAN End desc
+        )a
+        WHERE ROWNUM <= v_LastIndex
+    )    
+        WHERE rnum >= v_FirstIndex;
+end;

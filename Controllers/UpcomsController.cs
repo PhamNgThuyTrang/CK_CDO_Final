@@ -69,6 +69,30 @@ namespace CK_CDO_Final.Controllers
             return View(upcoms);
         }
 
+        public async Task<IActionResult> CompanyView(string id, string? searchString, string? date)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ViewData["Search"] = searchString;
+            }
+            if (date != null)
+            {
+                ViewData["Date"] = date;
+            }
+            var companyDetails = await _context.CompanyDetails
+                .FirstOrDefaultAsync(m => m.MA == id);
+            if (companyDetails == null)
+            {
+                return NotFound();
+            }
+
+            return View(companyDetails);
+        }
+
         // GET: Upcoms/Details/5
         public async Task<IActionResult> Details(int? id)
         {

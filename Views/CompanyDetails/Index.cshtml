@@ -1,4 +1,4 @@
-﻿@model PagedList.Core.IPagedList<CK_CDO_Final.Entities.CompanyDetails>
+﻿@model IEnumerable<CK_CDO_Final.Entities.CompanyDetails>
 
 @{
     ViewData["Title"] = "HNX";
@@ -9,7 +9,7 @@
         <h3 class="title-5 m-b-35">Quản lý doanh nghiệp niêm yết</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
-                <form asp-action="Index" method="get">
+                <form asp-action="Index" method="post">
                     <div class="rs-select2--light rs-select2--sm">
                         <input type="text" class="form-control" placeholder="Search for" name="SearchString" value="@ViewData["Search"]" />
                     </div>
@@ -34,19 +34,19 @@
                 <thead>
                     <tr class="row">
                         <th class="col-lg-1">
-                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.First().MA)</a>
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.MA)</a>
                         </th>
                         <th class="col-lg-3">
-                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ten"]">@Html.DisplayNameFor(model => model.First().TEN)</a>
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ten"]">@Html.DisplayNameFor(model => model.TEN)</a>
                         </th>
                         <th class="col-lg-3">
-                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Nganh"]">@Html.DisplayNameFor(model => model.First().NGANHNGHE)</a>
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Nganh"]">@Html.DisplayNameFor(model => model.NGANHNGHE)</a>
                         </th>
                         <th class="col-lg-1">
-                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["San"]">@Html.DisplayNameFor(model => model.First().SAN)</a>
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["San"]">@Html.DisplayNameFor(model => model.SAN)</a>
                         </th>
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.First().KLNY)
+                            <a asp-action="Index" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["KLNY"]">@Html.DisplayNameFor(model => model.KLNY)</a> 
                         </th>
                         <th class="col-lg-2"></th>
                     </tr>
@@ -88,7 +88,7 @@
                     }
                 </tbody>
             </table>
-            <pager class="pager-container" list="@Model" asp-action="Index" asp-controller="CompanyDetails" />
+            <partial name="_LayoutPage" />
         </div>
         <!-- END DATA TABLE -->
     </div>
@@ -99,7 +99,7 @@
         $(function () {
             $("#clear").click(function () {
                 $("#searchString").attr("value", "");
-                window.location.href ="CompanyDetails";
+                window.location.href = "CompanyDetails";
             });
         });
     </script>
