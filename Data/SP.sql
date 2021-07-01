@@ -209,11 +209,11 @@ begin
         WHERE rnum >= v_FirstIndex;
 end;
 
-create or replace procedure SP_PAGINATION_USER
+CREATE OR REPLACE PROCEDURE SP_PAGINATION_USER
 (
- u_Username In Varchar,
- u_sortOrder In Varchar,
- u_pageIndex In Number,
+ u_Username IN VARCHAR,
+ u_sortOrder IN VARCHAR,
+ u_pageIndex IN NUMBER,
  cv_1 OUT SYS_REFCURSOR
 )
 as 
@@ -232,18 +232,14 @@ begin
         SELECT a.*, ROWNUM AS rnum
         FROM 
         (
-            Select * From ASPNETUSERS uj 
-            where ((u_Username IS NULL) OR (Trim(Upper(uj.UserName)) like '%' || Trim(Upper(u_Username)) || '%'))
+            Select * From CDO."AspNetUsers" uj
+            where ((u_Username IS NULL) OR (Trim(Upper(uj."UserName")) like '%' || Trim(Upper(u_Username)) || '%'))
             -- Sorting     
             order by
-            Case when u_sortOrder = 'Ma'then  cj.MA End,
-            Case When u_sortOrder = 'Ma_desc' then cj.MA End desc,
-            Case when u_sortOrder = 'Name'then  cj.TEN End,
-            Case When u_sortOrder = 'Name_desc' then cj.TEN End desc,     
-            Case when u_sortOrder = 'Nganh'then  cj.NGANHNGHE End,
-            Case When u_sortOrder = 'Nganh_desc' then cj.NGANHNGHE End desc,
-            Case when u_sortOrder = 'San'then  cj.SAN End,
-            Case When u_sortOrder = 'San_desc' then cj.SAN End desc
+            Case when u_sortOrder = 'UserName'then uj."UserName" End,
+            Case When u_sortOrder = 'Userame_desc' then uj."UserName" End desc,
+            Case when u_sortOrder = 'Level'then uj."Role" End,
+            Case When u_sortOrder = 'Level_desc' then uj."Role" End desc     
         )a
         WHERE ROWNUM <= v_LastIndex
     )    

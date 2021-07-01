@@ -10,6 +10,11 @@ using Microsoft.AspNetCore.Identity;
 using CK_CDO_Final.Models;
 using Microsoft.AspNetCore.Authorization;
 using PagedList.Core;
+using System.Data;
+using Oracle.ManagedDataAccess.Client;
+using Dapper.Oracle;
+using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace CK_CDO_Final.Controllers
 {
@@ -19,13 +24,17 @@ namespace CK_CDO_Final.Controllers
         private readonly OracleDbContext _context;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IConfiguration _config;
+        private string Connectionstring = "CK[CDO]";
 
 
-        public UserManagerController(OracleDbContext context, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public UserManagerController(OracleDbContext context, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IConfiguration config)
         {
             _context = context;
             _roleManager = roleManager;
             _userManager = userManager;
+            _config = config;
+
         }
         [HttpGet]
         [AllowAnonymous]
@@ -38,39 +47,28 @@ namespace CK_CDO_Final.Controllers
         {
             ViewData["Name"] = sortOrder == "Username" ? "UserName_desc" : "UserName";
             ViewData["Level"] = sortOrder == "Level" ? "Level_desc" : "Level";
-            ViewData["Search"] = searchString;
-
-            var users = from a in _userManager.Users
-                            select a;
-
+      
             if (!String.IsNullOrEmpty(searchString))
             {
-                users = users.Where(a => a.UserName.Contains(searchString));
+                ViewData["Search"] = searchString;
             }
 
-            switch (sortOrder)
-            {
+            using IDbConnection db = new OracleConnection(_config.GetConnectionString(Connectionstring));
 
-                case "UserName":
-                    users = users.OrderBy(a => a.UserName);
-                    break;
-                case "Userame_desc":
-                    users = users.OrderByDescending(a => a.UserName);
-                    break;
-                case "Level":
-                    users = users.OrderBy(a => a.Role);
-                    break;
-                case "Level_desc":
-                    users = users.OrderByDescending(a => a.Role);
-                    break;
-                default:
-                    users = users.OrderByDescending(a => a.Id);
-                    break;
-            }
-            
-            PagedList<ApplicationUser> model = new PagedList<ApplicationUser>(users, page, 10);
+            OracleDynamicParameters dynamicParameters = new OracleDynamicParameters();
+            dynamicParameters.Add(name: ":u_Username", direction: ParameterDirection.Input, value: searchString, dbType: OracleMappingType.Varchar2);
+            dynamicParameters.Add(name: ":u_sortOrder", direction: ParameterDirection.Input, value: sortOrder, dbType: OracleMappingType.Varchar2);
+            dynamicParameters.Add(name: ":u_pageIndex", direction: ParameterDirection.Input, value: page, dbType: OracleMappingType.Int32);
+            dynamicParameters.Add(name: ":cv_1", direction: ParameterDirection.Output, dbType: OracleMappingType.RefCursor);
 
-            return View(model);
+            var users = db.Query<ApplicationUser>("SP_PAGINATION_USER", param: dynamicParameters, commandType: CommandType.StoredProcedure).ToList();
+
+            ViewData["page"] = page;
+            var totalPage = _userManager.Users.Where(u => searchString == null || u.UserName.Contains(searchString.Trim().ToUpper())).Count() / 10;
+            ViewData["total"] = _userManager.Users.Where(u => searchString == null || u.UserName.Contains(searchString.Trim().ToUpper())).Count() % 10
+                            == 0 ? totalPage : totalPage + 1;
+
+            return View(users);
         }
 
         // GET: Accounts/Details/5
