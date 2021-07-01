@@ -27,7 +27,10 @@ begin
             -- Filtering
             And ((h_Ngay IS NULL) OR (hj.NGAY = h_Ngay))
             -- Sorting     
-            order by   
+            order by
+            Case when h_sortOrder is null then  hj.NGAY End desc,
+            Case when h_sortOrder = 'Ngay'then  hj.NGAY End,
+            Case When h_sortOrder = 'Ngay_desc' then hj.NGAY End desc,   
             Case when h_sortOrder = 'Name'then  hj.MA End,
             Case When h_sortOrder = 'Name_desc' then hj.MA End desc,     
             Case when h_sortOrder = 'Open'then  hj.GIAMOCUA End,
@@ -70,6 +73,9 @@ begin
             and ((h_Ngay IS NULL) OR (hj.NGAY = h_Ngay))
             -- Sorting     
             order by
+            Case when h_sortOrder is null then  hj.NGAY End desc,
+            Case when h_sortOrder = 'Ngay'then  hj.NGAY End,
+            Case When h_sortOrder = 'Ngay_desc' then hj.NGAY End desc,
             Case when h_sortOrder = 'Name'then  hj.MA End,
             Case When h_sortOrder = 'Name_desc' then hj.MA End desc,     
             Case when h_sortOrder = 'Open'then  hj.GIAMOCUA End,
@@ -112,6 +118,9 @@ begin
             and ((u_Ngay IS NULL) OR (uj.NGAY = u_Ngay))
             -- Sorting     
             order by
+            Case when u_sortOrder is null then  uj.NGAY End desc,
+            Case when u_sortOrder = 'Ngay'then  uj.NGAY End,
+            Case When u_sortOrder = 'Ngay_desc' then uj.NGAY End desc,
             Case when u_sortOrder = 'Name'then  uj.MA End,
             Case When u_sortOrder = 'Name_desc' then uj.MA End desc,     
             Case when u_sortOrder = 'Open'then  uj.GIAMOCUA End,
@@ -154,6 +163,9 @@ begin
             and ((i_Ngay IS NULL) OR (ij.NGAY = i_Ngay))
             -- Sorting     
             order by
+            Case when i_sortOrder is null then  ij.NGAY End desc,
+            Case when i_sortOrder = 'Ngay'then  ij.NGAY End,
+            Case When i_sortOrder = 'Ngay_desc' then ij.NGAY End desc,     
             Case when i_sortOrder = 'Name'then  ij.CHISO End,
             Case When i_sortOrder = 'Name_desc' then ij.CHISO End desc,     
             Case when i_sortOrder = 'Open'then  ij.MOCUA End,
@@ -193,6 +205,7 @@ begin
             where ((c_Ma IS NULL) OR (Trim(Upper(cj.MA)) like '%' || Trim(Upper(c_Ma)) || '%'))
             -- Sorting     
             order by
+            Case when c_sortOrder is null then  cj.MA End,   
             Case when c_sortOrder = 'Ma'then  cj.MA End,
             Case When c_sortOrder = 'Ma_desc' then cj.MA End desc,
             Case when c_sortOrder = 'Name'then  cj.TEN End,
@@ -236,6 +249,7 @@ begin
             where ((u_Username IS NULL) OR (Trim(Upper(uj."UserName")) like '%' || Trim(Upper(u_Username)) || '%'))
             -- Sorting     
             order by
+            Case when u_sortOrder is null then  uj."Id" End,   
             Case when u_sortOrder = 'UserName'then uj."UserName" End,
             Case When u_sortOrder = 'Userame_desc' then uj."UserName" End desc,
             Case when u_sortOrder = 'Level'then uj."Role" End,

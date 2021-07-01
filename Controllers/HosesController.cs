@@ -36,6 +36,8 @@ namespace CK_CDO_Final.Controllers
             ViewData["Ma"] = sortOrder == "Name" ? "Name_desc" : "Name";
             ViewData["Close"] = sortOrder == "Close" ? "Close_desc" : "Close";
             ViewData["Open"] = sortOrder == "Open" ? "Open_desc" : "Open";
+            ViewData["Ngay"] = sortOrder == "Ngay" ? "Ngay_desc" : "Ngay";
+
 
             if (!String.IsNullOrEmpty(searchString))
             {

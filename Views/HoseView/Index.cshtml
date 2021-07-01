@@ -36,7 +36,7 @@
                             <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ma"]">@Html.DisplayNameFor(model => model.MA)</a>
                         </th>
                         <th class="col-lg-2">
-                            @Html.DisplayNameFor(model => model.NGAY)
+                            <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Ngay"]">@Html.DisplayNameFor(model => model.NGAY)</a>
                         </th>
                         <th class="col-lg-1">
                             <a asp-action="Index" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-sortOrder="@ViewData["Open"]">@Html.DisplayNameFor(model => model.GIAMOCUA)</a>
@@ -60,7 +60,7 @@
                     {
                         <tr class="tr-shadow row">
                             <td class="col-lg-2">
-                                <a asp-action="CompanyView" asp-route-id="@item.MA">@Html.DisplayFor(modelItem => item.MA)</a>
+                                <a asp-action="CompanyView" asp-route-date="@ViewData["Date"]" asp-route-searchString="@ViewData["Search"]" asp-route-id="@item.MA">@Html.DisplayFor(modelItem => item.MA)</a>
                             </td>
                             <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.NGAY)
