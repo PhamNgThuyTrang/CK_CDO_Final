@@ -40,7 +40,9 @@ namespace CK_CDO_Final.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(_userManager.FindByEmailAsync(userModel.Email) != null)
+                var emailExist = _userManager.FindByEmailAsync(userModel.Email);
+                Console.WriteLine(emailExist.Result);
+                if ( emailExist.Result != null)
                 {
                     ModelState.AddModelError("", "Email already exists!");
                     return View(userModel);

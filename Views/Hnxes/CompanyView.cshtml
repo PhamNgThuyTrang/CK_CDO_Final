@@ -1,4 +1,5 @@
 ﻿@model CK_CDO_Final.Entities.CompanyDetails
+@inject CK_CDO_Final.Entities.OracleDbContext _context
 
 @{
     ViewData["Title"] = "CompanyDetails";
@@ -64,3 +65,52 @@
         </div>
     </div>
 </div>
+
+<div id="chartContainer" style="height: 300px; width: 100%;">
+
+
+    <!-- 
+            <script type="text/javascript">
+                window.onload = function () {
+                    $.ajax({
+                        url: "../GetCandleChart",
+                        data: {
+                            "id": "@Model.MA"
+                        },
+                        success: function (data) {
+                            var chart = new CanvasJS.Chart("chartContainer",
+                                {
+                                    title: {
+                                        text: "Customized Candle Stick Chart",
+                                        fontFamily: "times new roman"
+                                    },
+                                    zoomEnabled: true,
+                                    exportEnabled: true,
+                                    axisY: {
+                                        includeZero: false,
+                                        title: "Prices",
+                                        prefix: "$ "
+                                    },
+                                    axisX: {
+                                        interval: 2,
+                                        intervalType: "month",
+                                        valueFormatString: "DD-MM-YYYY",
+                                        labelAngle: -45
+                                    },
+                                    data: [
+                                        {
+                                            type: "candlestick",
+                                            risingColor: "green",
+                                            color: "red",
+                                            dataPoints: data
+                                        }
+                                    ]
+                                });
+                            chart.render();
+                        }
+                    });
+                }
+            </script>
+            <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        }
+    -->

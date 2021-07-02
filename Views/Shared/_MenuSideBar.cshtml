@@ -4,17 +4,17 @@
 @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 {
     <li>
-        <a asp-controller="Home">
+        <a asp-controller="Home" asp-action="Index">
             <i class="fas fa-home"></i>Trang chủ
         </a>
     </li>
     <li>
-        <a asp-controller="Indices">
+        <a asp-controller="Indices" asp-action="Index">
             <i class="fas fa-chart-bar"></i>Quản lý chỉ số
         </a>
     </li>
     <li>
-        <a asp-controller="CompanyDetails">
+        <a asp-controller="CompanyDetails" asp-action="Index">
             <i class="fas fa-briefcase"></i>Quản lý thông tin doanh nghiệp
         </a>
     </li>
@@ -24,13 +24,13 @@
         </a>
         <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
             <li>
-                <a asp-controller="Hoses"><i class="fas fa-chart-bar"></i>HOSE</a>
+                <a asp-controller="Hoses" asp-action="Index"><i class="fas fa-chart-bar"></i>HOSE</a>
             </li>
             <li>
-                <a asp-controller="Hnxes"><i class="fas fa-chart-bar"></i>HNX</a>
+                <a asp-controller="Hnxes" asp-action="Index"><i class="fas fa-chart-bar"></i>HNX</a>
             </li>
             <li>
-                <a asp-controller="Upcoms"><i class="fas fa-chart-bar"></i>UPCOM</a>
+                <a asp-controller="Upcoms" asp-action="Index"><i class="fas fa-chart-bar"></i>UPCOM</a>
             </li>
         </ul>
     </li>
@@ -43,17 +43,17 @@
 @if (_signInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
 {
 <li>
-    <a asp-controller="Home">
+    <a asp-controller="Home"  asp-action="Index">
         <i class="fas fa-home"></i>Trang chủ
     </a>
 </li>
 <li>
-    <a asp-controller="IndexView">
+    <a asp-controller="IndexView" asp-action="Index">
         <i class="fas fa-chart-bar"></i>Thông tin chỉ số
     </a>
 </li>
 <li>
-    <a asp-controller="CompanyDetailsView">
+    <a asp-controller="CompanyDetailsView" asp-action="Index">
         <i class="fas fa-briefcase"></i>Thông tin doanh nghiệp
     </a>
 </li>
@@ -63,13 +63,13 @@
     </a>
     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
         <li>
-            <a asp-controller="HoseView"><i class="fas fa-chart-bar"></i>HOSE</a>
+            <a asp-controller="HoseView" asp-action="Index"><i class="fas fa-chart-bar"></i>HOSE</a>
         </li>
         <li>
-            <a asp-controller="HnxView"><i class="fas fa-chart-bar"></i>HNX</a>
+            <a asp-controller="HnxView" asp-action="Index"><i class="fas fa-chart-bar"></i>HNX</a>
         </li>
         <li>
-            <a asp-controller="UpcomView"><i class="fas fa-chart-bar"></i>UPCOM</a>
+            <a asp-controller="UpcomView" asp-action="Index"><i class="fas fa-chart-bar"></i>UPCOM</a>
         </li>
     </ul>
 </li>

@@ -13,6 +13,7 @@ using Oracle.ManagedDataAccess.Client;
 using Dapper.Oracle;
 using Microsoft.Extensions.Configuration;
 using Dapper;
+using CK_CDO_Final.Models;
 
 namespace CK_CDO_Final.Controllers
 {
@@ -67,7 +68,6 @@ namespace CK_CDO_Final.Controllers
             var totalPage = _context.Hnx.Where(c => (searchString == null || c.MA.Contains(searchString.Trim().ToUpper())) && (dateTime == null || c.NGAY == dateTime)).Count() / 10;
             ViewData["total"] = _context.Hnx.Where(c => (searchString == null || c.MA.Contains(searchString.Trim().ToUpper())) && (dateTime == null || c.NGAY == dateTime)).Count() % 10
                             == 0 ? totalPage : totalPage + 1;
-
             return View(hnxs);
         }
 
@@ -91,8 +91,19 @@ namespace CK_CDO_Final.Controllers
             {
                 return NotFound();
             }
-            
             return View(companyDetails);
+        }
+
+        public List<CandleChart> GetCandleChart(string id)
+        {
+            var s = from h in _context.Hnx.Where(c => c.MA == id).OrderByDescending(c=>c.NGAY).Take(10)
+                            select new CandleChart
+                            {
+                                date = h.NGAY,
+                                arrays = new float[] { h.GIAMOCUA, h.GIATRAN, h.GIASAN, h.GIADONGCUA},
+                            };
+            var result = s.ToList();
+            return result;
         }
 
         // GET: Hnxes/Details/5
